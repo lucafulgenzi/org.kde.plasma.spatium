@@ -1,4 +1,4 @@
-# Spatium 🌌
+# Spatium — GNOME-style Virtual Desktop Indicator for Plasma 6
 
 **Spatium** is a lightweight, GNOME-inspired virtual desktop switcher built specifically for **KDE Plasma 6**. It provides a clean, minimal dot-based interface to navigate your workspaces with support for custom colors, animations, and mouse-wheel scrolling.
 
