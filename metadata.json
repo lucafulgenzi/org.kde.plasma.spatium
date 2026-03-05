@@ -1,0 +1,36 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "Sakib Reza"
+            }
+        ],
+        "Category": "Windows and Tasks",
+        "Description": "GNOME-like virtual desktops switcher for Plasma 6",
+        "EnabledByDefault": true,
+        "Icon": "preferences-desktop-virtual",
+        "Id": "org.kde.plasma.spatium",
+        "License": "GPL-3.0+",
+        "Name": "Spatium",
+        "ServiceTypes": [
+            "Plasma/Applet"
+        ],
+        "Version": "1.0",
+        "Website": ""
+    },
+    "X-Plasma-API-Minimum-Version": "6.0",
+    "X-Plasma-Provides": [
+        "org.kde.plasma.virtualdesktops"
+    ],
+    "X-Plasma-HasConfigurationInterface": true,
+    "X-Plasma-RootItem": "main.qml",
+    "Keywords": [
+        "pager",
+        "workspace",
+        "switcher",
+        "desktop",
+        "grid",
+        "gnome"
+    ]
+}
