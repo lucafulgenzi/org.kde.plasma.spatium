@@ -17,7 +17,7 @@
             "Plasma/Applet"
         ],
         "Version": "1.0",
-        "Website": ""
+        "Website": "https://github.com/sakibreza229/org.kde.plasma.spatium"
     },
     "X-Plasma-API-Minimum-Version": "6.0",
     "X-Plasma-Provides": [

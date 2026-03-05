@@ -38,7 +38,7 @@ Kirigami.FormLayout {
     QQC2.SpinBox {
         id: spacingSpin
         Kirigami.FormData.label: i18n("Spacing Factor:")
-        from: 5; to: 30; stepSize: 1
+        from: 1; to: 5; stepSize: 1
         property real realValue: value / 10.0
         textFromValue: (value, locale) => Number(value / 10.0).toLocaleString(locale, 'f', 1)
         valueFromText: (text, locale) => Math.round(Number.fromLocaleString(locale, text) * 10)

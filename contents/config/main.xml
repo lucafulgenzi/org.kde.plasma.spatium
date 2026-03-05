@@ -17,7 +17,7 @@
     </entry>
     <entry name="spacingFactor" type="Double">
       <label>Spacing factor between dots</label>
-      <default>1.5</default>
+      <default>0.1</default>
     </entry>
     <entry name="activeSizeW" type="Int">
       <label>Width of active desktop dot</label>

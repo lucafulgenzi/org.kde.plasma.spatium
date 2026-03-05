@@ -29,7 +29,7 @@ PlasmoidItem {
     property int desktopCount: virtualDesktopInfo.numberOfDesktops
     
     property int dotSize: Math.max(2, plasmoid.configuration.dotSizeCustom || 8)
-    property real spacingFactor: Math.max(0.5, plasmoid.configuration.spacingFactor || 1.5)
+    property real spacingFactor: Math.max(0.1, plasmoid.configuration.spacingFactor || 0.5)
     property int activeWidth: Math.max(dotSize, plasmoid.configuration.activeSizeW || 20)
     property int activeHeight: Math.max(dotSize, plasmoid.configuration.activeSizeH || 20)
     property bool wrapOn: plasmoid.configuration.desktopWrapOn !== false
@@ -122,6 +122,9 @@ property color inactiveColor: {
             
             delegate: Item {
                 id: delegateItem
+                // Track hover state via the MouseArea
+                readonly property bool isHovered: mouseHandler.containsMouse
+
                 x: isHorizontal ? (index < currentDesktop ? index * (dotSize + spacing) : (index > currentDesktop ? (index * (dotSize + spacing)) + (activeWidth - dotSize) : index * (dotSize + spacing))) : (parent.width - width) / 2
                 y: !isHorizontal ? (index < currentDesktop ? index * (dotSize + spacing) : (index > currentDesktop ? (index * (dotSize + spacing)) + (activeHeight - dotSize) : index * (dotSize + spacing))) : (parent.height - height) / 2
                 
@@ -132,19 +135,34 @@ property color inactiveColor: {
                     id: desktopDot
                     anchors.fill: parent
                     color: index === currentDesktop ? activeColor : inactiveColor
-                    opacity: index === currentDesktop ? 1.0 : 0.6
+                    
+                    // --- Opacity Hover Logic ---
+                    // Active: 1.0 (Always solid)
+                    // Inactive + Hover: 0.9 (Bright)
+                    // Inactive: 0.4 (Subtle/Dimmed)
+                    opacity: {
+                        if (index === currentDesktop) return 1.0;
+                        return isHovered ? 0.9 : 0.4;
+                    }
+
                     radius: height * 0.5
                     
+                    // Smooth transitions for both color and the new hover opacity
                     Behavior on color { ColorAnimation { duration: animDuration; easing.type: Easing.InOutQuad } }
-                    Behavior on opacity { NumberAnimation { duration: animDuration; easing.type: Easing.InOutQuad } }
+                    Behavior on opacity { NumberAnimation { duration: 150; easing.type: Easing.OutQuad } }
                     
                     MouseArea {
+                        id: mouseHandler
                         anchors.fill: parent
-                        hoverEnabled: true
+                        hoverEnabled: true // Essential for containsMouse to work
                         onClicked: switchToDesktop(index)
+                        
+                        // Change cursor to pointing hand on hover
+                        cursorShape: Qt.PointingHandCursor
                     }
                 }
                 
+                // Layout animations
                 Behavior on x { NumberAnimation { duration: animDuration; easing.type: Easing.OutQuad } }
                 Behavior on y { NumberAnimation { duration: animDuration; easing.type: Easing.OutQuad } }
                 Behavior on width { NumberAnimation { duration: animDuration; easing.type: Easing.OutQuad } }
