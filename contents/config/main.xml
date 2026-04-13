@@ -55,5 +55,17 @@
       <label>Allow adding/removing desktops</label>
       <default>true</default>
     </entry>
+    <entry name="dotShape" type="Int">
+      <label>Shape of desktop dots (0=circle, 1=square, 2=name)</label>
+      <default>0</default>
+    </entry>
+    <entry name="fixedDotCountEnabled" type="Bool">
+      <label>Use a fixed number of dots</label>
+      <default>false</default>
+    </entry>
+    <entry name="fixedDotCount" type="Int">
+      <label>Fixed number of dots to display</label>
+      <default>5</default>
+    </entry>
   </group>
 </kcfg>
